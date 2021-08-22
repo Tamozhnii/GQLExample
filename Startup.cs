@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using GQLExample.Data;
 
 namespace GQLExample
 {
@@ -21,6 +23,7 @@ namespace GQLExample
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(opt => opt.UseMySQL(Configuration.GetConnectionString("ColorConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
