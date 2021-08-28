@@ -34,7 +34,7 @@ namespace GQLExample.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shades");
+                    b.ToTable("shades");
                 });
 #pragma warning restore 612, 618
         }
