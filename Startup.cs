@@ -25,7 +25,7 @@ namespace GQLExample
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(opt => opt.UseMySQL
+            services.AddPooledDbContextFactory<AppDbContext>(opt => opt.UseMySQL
             (Configuration.GetConnectionString("DBConnection")));
 
             services
