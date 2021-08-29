@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using GQLExample.Data;
 using GQLExample.GraphQL;
+using GraphQL.Server.Ui.Voyager;
 
 namespace GQLExample
 {
@@ -46,6 +47,8 @@ namespace GQLExample
             {
                 endpoints.MapGraphQL();
             });
+
+            app.UseGraphQLVoyager(new VoyagerOptions(), "/voyager");
         }
     }
 }
