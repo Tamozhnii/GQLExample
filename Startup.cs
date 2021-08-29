@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using GQLExample.Data;
+using GQLExample.GraphQL;
 
 namespace GQLExample
 {
@@ -23,7 +24,12 @@ namespace GQLExample
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(opt => opt.UseMySQL(Configuration.GetConnectionString("DBConnection")));
+            services.AddDbContext<AppDbContext>(opt => opt.UseMySQL
+            (Configuration.GetConnectionString("DBConnection")));
+
+            services
+                .AddGraphQLServer()
+                .AddQueryType<Query>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
