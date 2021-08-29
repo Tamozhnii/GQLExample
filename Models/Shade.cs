@@ -9,6 +9,8 @@ namespace GQLExample.Models
         [Required]
         public string Name { get; set; }
         [Required]
+        public string LocalName { get; set; }
+        [Required]
         public string HEX { get; set; }
     }
 }

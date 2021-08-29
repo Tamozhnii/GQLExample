@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GQLExample.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210822201820_AddShadeToDb")]
-    partial class AddShadeToDb
+    [Migration("20210829103225_AddShadesToDb")]
+    partial class AddShadesToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,13 +28,17 @@ namespace GQLExample.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("LocalName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("shades");
+                    b.ToTable("Shades");
                 });
 #pragma warning restore 612, 618
         }

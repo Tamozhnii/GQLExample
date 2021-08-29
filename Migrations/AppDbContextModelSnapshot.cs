@@ -26,13 +26,17 @@ namespace GQLExample.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("LocalName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("shades");
+                    b.ToTable("Shades");
                 });
 #pragma warning restore 612, 618
         }
