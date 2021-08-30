@@ -66,22 +66,23 @@ namespace GQLExample.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ColorShade",
-                columns: table => new{
-                    ColorsColorId = table.Column<int>(type: "int", nullable: false),
-                    ShadesShadeId = table.Column<int>(type: "int", nullable: false)
+                columns: table => new
+                {
+                    ColorsId = table.Column<int>(type: "int", nullable: false),
+                    ShadesId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table => {
-                    table.PrimaryKey("PK_ColorShade", x => new {x.ColorsColorId, x.ShadesShadeId});
+                    table.PrimaryKey("PK_ColorShade", x => new {x.ColorsId, x.ShadesId});
                     table.ForeignKey(
-                        name: "FK_ColorShade_Colors_ColorsColorId",
-                        column: x => x.ColorsColorId,
+                        name: "FK_ColorShade_Colors_ColorsId",
+                        column: x => x.ColorsId,
                         principalTable: "Colors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade
                     );
                     table.ForeignKey(
-                        name: "FK_ColorShade_Shades_ShadesShadeId",
-                        column: x => x.ShadesShadeId,
+                        name: "FK_ColorShade_Shades_ShadesId",
+                        column: x => x.ShadesId,
                         principalTable: "Shades",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade
@@ -102,7 +103,7 @@ namespace GQLExample.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ColorShade_ShadesId",
                 table: "ColorShade",
-                column: "ShadesShadeId");
+                column: "ShadesId");
 
             migrationBuilder.InsertData(
                 table: "Brightnesses",

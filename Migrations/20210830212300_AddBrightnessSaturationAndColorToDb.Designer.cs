@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GQLExample.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210830205036_AddBrightnessSaturationAndColorToDb")]
+    [Migration("20210830212300_AddBrightnessSaturationAndColorToDb")]
     partial class AddBrightnessSaturationAndColorToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
