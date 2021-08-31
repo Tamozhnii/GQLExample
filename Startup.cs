@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using GQLExample.Data;
 using GQLExample.GraphQL;
 using GraphQL.Server.Ui.Voyager;
+using GQLExample.GraphQL.Colors;
 
 namespace GQLExample
 {
@@ -31,6 +32,7 @@ namespace GQLExample
             services
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
+                .AddType<ColorType>()
                 .AddProjections(); //Подключаем метод прохождения по дочерним и родительским связям
         }
 
