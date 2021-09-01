@@ -38,7 +38,9 @@ namespace GQLExample
                 .AddType<ColorType>()
                 .AddType<ShadeType>()
                 .AddType<BrightnessType>()
-                .AddType<SaturationType>();
+                .AddType<SaturationType>()
+                .AddFiltering()
+                .AddSorting();
                 // .AddProjections(); //Подключаем метод прохождения по дочерним и родительским связям
         }
 
