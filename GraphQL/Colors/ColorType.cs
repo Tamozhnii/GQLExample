@@ -41,13 +41,13 @@ namespace GQLExample.GraphQL.Colors
             {
                 return context.Shades.Where(s => s.Colors.Contains(color));
             }
-            public IQueryable<Brightness> GetBrightnesses(Brightness brightness, [ScopedService] AppDbContext context)
+            public IQueryable<Brightness> GetBrightnesses(Color color, [ScopedService] AppDbContext context)
             {
-                return context.Brightnesses.Where(b => b.Id == brightness.Id);
+                return context.Brightnesses.Where(b => b.Id == color.BrightnessId);
             }
-            public IQueryable<Saturation> GetSaturations(Saturation saturation, [ScopedService] AppDbContext context)
+            public IQueryable<Saturation> GetSaturations(Color color, [ScopedService] AppDbContext context)
             {
-                return context.Saturations.Where(s => s.Id == saturation.Id);
+                return context.Saturations.Where(s => s.Id == color.SaturationId);
             }
         }
     }

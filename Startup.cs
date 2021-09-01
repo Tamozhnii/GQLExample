@@ -13,6 +13,9 @@ using GQLExample.Data;
 using GQLExample.GraphQL;
 using GraphQL.Server.Ui.Voyager;
 using GQLExample.GraphQL.Colors;
+using GQLExample.GraphQL.Shades;
+using GQLExample.GraphQL.Brightnesses;
+using GQLExample.GraphQL.Saturations;
 
 namespace GQLExample
 {
@@ -33,7 +36,10 @@ namespace GQLExample
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
                 .AddType<ColorType>()
-                .AddProjections(); //Подключаем метод прохождения по дочерним и родительским связям
+                .AddType<ShadeType>()
+                .AddType<BrightnessType>()
+                .AddType<SaturationType>();
+                // .AddProjections(); //Подключаем метод прохождения по дочерним и родительским связям
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
