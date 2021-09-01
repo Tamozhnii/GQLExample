@@ -11,7 +11,6 @@ namespace GQLExample.GraphQL
         [UseDbContext(typeof(AppDbContext))]
         [UseFiltering]
         [UseSorting]
-        // [UseProjection] //Получать данные из дочерних и родительских сущностей
         public IQueryable<Shade> GetShade([ScopedService] AppDbContext context){
             return context.Shades;
         }
@@ -20,7 +19,6 @@ namespace GQLExample.GraphQL
         [UseFiltering]
         [UseSorting]
 
-        // [UseProjection] //Получать данные из дочерних и родительских сущностей
         public IQueryable<Color> GetColor([ScopedService] AppDbContext context){
             return context.Colors;
         }

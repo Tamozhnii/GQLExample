@@ -35,13 +35,13 @@ namespace GQLExample
             services
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
+                .AddMutationType<Mutation>()
                 .AddType<ColorType>()
                 .AddType<ShadeType>()
                 .AddType<BrightnessType>()
                 .AddType<SaturationType>()
                 .AddFiltering()
                 .AddSorting();
-                // .AddProjections(); //Подключаем метод прохождения по дочерним и родительским связям
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
