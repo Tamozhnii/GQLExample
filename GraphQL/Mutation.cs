@@ -6,6 +6,8 @@ using GQLExample.Models;
 using HotChocolate;
 using HotChocolate.Data;
 using System.Linq;
+using HotChocolate.Subscriptions;
+using System.Threading;
 
 namespace GQLExample.GraphQL
 {
@@ -33,7 +35,12 @@ namespace GQLExample.GraphQL
         }
 
         [UseDbContext(typeof(AppDbContext))]
-        public async Task<EditColorPayload> EditColorAsync(EditColorInput input, [ScopedService] AppDbContext context)
+        public async Task<EditColorPayload> EditColorAsync(
+            EditColorInput input, 
+            [ScopedService] AppDbContext context, 
+            [Service] ITopicEventSender eventSender,
+            CancellationToken cancellationToken
+        )
         {
             Color color = context.Colors.Find(input.Id);
             
@@ -52,6 +59,8 @@ namespace GQLExample.GraphQL
             }
 
             await context.SaveChangesAsync();
+
+            await eventSender.SendAsync(nameof(Subscription.OnColorUpdate), color, cancellationToken);
 
             return new EditColorPayload(color);
         }
