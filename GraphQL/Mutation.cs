@@ -5,6 +5,7 @@ using GQLExample.GraphQL.Colors;
 using GQLExample.Models;
 using HotChocolate;
 using HotChocolate.Data;
+using System.Linq;
 
 namespace GQLExample.GraphQL
 {
@@ -35,19 +36,21 @@ namespace GQLExample.GraphQL
         public async Task<EditColorPayload> EditColorAsync(EditColorInput input, [ScopedService] AppDbContext context)
         {
             Color color = context.Colors.Find(input.Id);
-            List<Shade> ShadesColor = new();
-            input.Shades.ForEach(s => ShadesColor.Add(context.Shades.Find(s)));
-
-            if(color != null){
-                color.Name = input.Name != null ? input.Name : color.Name;
-                color.Association = input.Association != null ? input.Association : color.Association;
-                color.BrightnessId = input.Brightness;
-                color.SaturationId = input.Saturation;
-                color.HEX = input.HEX != null ? input.HEX : color.HEX;
-                color.Shades = input.Shades != null ? ShadesColor : color.Shades;
+            
+            color.Name = input.Name != null ? input.Name : color.Name;
+            color.Association = input.Association != null ? input.Association : color.Association;
+            color.BrightnessId = input.Brightness;
+            color.SaturationId = input.Saturation;
+            color.HEX = input.HEX != null ? input.HEX : color.HEX;
+            if(input.Shades != null){
+                input.Shades.ForEach(s => {
+                        Shade shade = context.Shades.Find(s);
+                        if(color.Shades.Where(sh => sh.Id == s).Count() == 0){
+                            color.Shades.Add(shade);  
+                        }
+                    });
             }
 
-            context.Colors.Update(color);
             await context.SaveChangesAsync();
 
             return new EditColorPayload(color);
