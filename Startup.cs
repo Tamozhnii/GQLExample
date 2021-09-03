@@ -32,8 +32,8 @@ namespace GQLExample
             services
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
-                .AddType<ColorType>()
-                .AddProjections(); //Подключаем метод прохождения по дочерним и родительским связям
+                .AddType<ColorType>();
+                // .AddProjections(); //Подключаем метод прохождения по дочерним и родительским связям
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

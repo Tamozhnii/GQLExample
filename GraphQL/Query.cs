@@ -15,7 +15,7 @@ namespace GQLExample.GraphQL
         }
 
         [UseDbContext(typeof(AppDbContext))]
-        [UseProjection] //Получать данные из дочерних и родительских сущностей
+        // [UseProjection] //Получать данные из дочерних и родительских сущностей
         public IQueryable<Color> GetColor([ScopedService] AppDbContext context){
             return context.Colors;
         }
