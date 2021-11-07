@@ -3,7 +3,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 namespace GQLExample.Migrations
 {
-    public partial class AddBrightnessSaturationAndColorToDb : Migration
+    public partial class AddSBCToDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -71,24 +71,22 @@ namespace GQLExample.Migrations
                     ColorsId = table.Column<int>(type: "int", nullable: false),
                     ShadesId = table.Column<int>(type: "int", nullable: false)
                 },
-                constraints: table => {
-                    table.PrimaryKey("PK_ColorShade", x => new {x.ColorsId, x.ShadesId});
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ColorShade", x => new { x.ColorsId, x.ShadesId });
                     table.ForeignKey(
                         name: "FK_ColorShade_Colors_ColorsId",
                         column: x => x.ColorsId,
                         principalTable: "Colors",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade
-                    );
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ColorShade_Shades_ShadesId",
                         column: x => x.ShadesId,
                         principalTable: "Shades",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade
-                    );
-                }
-            );
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Colors_BrightnessId",
@@ -104,18 +102,6 @@ namespace GQLExample.Migrations
                 name: "IX_ColorShade_ShadesId",
                 table: "ColorShade",
                 column: "ShadesId");
-
-            migrationBuilder.InsertData(
-                table: "Brightnesses",
-                columns: new []{"Value", "LocalValue"},
-                values: new [,] {{"Light","Светлый"},{"Average","Средний"},{"Dark","Темный"}}
-            );
-
-            migrationBuilder.InsertData(
-                table: "Saturations",
-                columns: new []{"Value", "LocalValue"},
-                values: new [,] {{"Pale","Бледный"},{"Midsaturated","Средне-насыщенный"},{"Saturated","Насыщенный"}}
-            );
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GQLExample.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210830212300_AddBrightnessSaturationAndColorToDb")]
-    partial class AddBrightnessSaturationAndColorToDb
+    [Migration("20211105094000_AddSBCToDB")]
+    partial class AddSBCToDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,7 @@ namespace GQLExample.Migrations
 
                     b.HasKey("ColorsId", "ShadesId");
 
-                    b.HasIndex("ShadesId");
+                    b.HasIndex("ColorsId", "ShadesId");
 
                     b.ToTable("ColorShade");
                 });

@@ -15,7 +15,7 @@ namespace GQLExample.Models
         [Required]
         public int BrightnessId { get; set; }
         public Brightness Brightness { get; set; }
-        // [Required]
+        [Required]
         public int SaturationId { get; set; }
         public Saturation Saturation { get; set; }
         public ICollection<Shade> Shades { get; set; } = new List<Shade>();
